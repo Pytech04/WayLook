@@ -254,5 +254,26 @@ def scan():
     )
 
 
+@app.route('/')
+def index():
+        """Simple landing page so root path doesn't return 404 on hosts."""
+        html = """
+        <!doctype html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width,initial-scale=1">
+                <title>WayLook API</title>
+            </head>
+            <body>
+                <h1>WayLook</h1>
+                <p>The API is available at <a href="/api/scan">/api/scan</a>.</p>
+                <p>If you intended to run the client web app, host the `client` app separately or build it into static files and serve them from this server.</p>
+            </body>
+        </html>
+        """
+        return Response(html, mimetype='text/html')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True, threaded=True)
